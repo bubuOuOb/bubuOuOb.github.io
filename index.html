@@ -2,7 +2,6 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8" />
     <title>Bubu's project</title>
   </head>
@@ -25,34 +24,20 @@
     </div>
 
     <script>
-      $(document).ready(function () {
-        $("#btn").click(function () {
-          var message = $("#content").val();
-          sendMessageToServer(message);
-        });
-
-        function sendMessageToServer(message) {
-          $.ajax({
-            type: "POST",
-            url: "https://bubuouob.github.io/", 
-            data: { message: message },
-            success: function () {
-              addMessageToList(message);
-            },
-            error: function () {
-              console.log("發生錯誤，無法傳送訊息至伺服器");
-            },
-          });
-        }
-
-        function addMessageToList(message) {
-          var article = $("<div>").addClass("article");
-          var p = $("<p>").text(message);
-          article.append(p);
-          $("#list").append(article);
-          $("#content").val("");
-        }
+      document.getElementById("btn").addEventListener("click", function () {
+        var message = document.getElementById("content").value;
+        addMessageToList(message);
       });
+
+      function addMessageToList(message) {
+        var article = document.createElement("div");
+        article.className = "article";
+        var p = document.createElement("p");
+        p.innerText = message;
+        article.appendChild(p);
+        document.getElementById("list").appendChild(article);
+        document.getElementById("content").value = "";
+      }
     </script>
   </body>
 </html>
