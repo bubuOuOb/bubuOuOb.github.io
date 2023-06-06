@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Bubu's project</title>
+  </head>
+  <body>
+    <h1>Bubu's project</h1>
+    <h3>There are a lot of useless things here.</h3>
+    <hr />
+    <p>
+      I'm creating a link to
+      <a href="https://youtu.be/dQw4w9WgXcQ">here</a>.
+    </p>
+    <div class="box box-animation"></div>
+
+    <input type="text" id="content" rows="8" placeholder="please input text." />
+    <button id="btn">submit</button>
+    <div id="list">
+      <div class="article">
+        <p>bubu's message board</p>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#btn").click(function () {
+          var message = $("#content").val();
+          sendMessageToServer(message);
+        });
+
+        function sendMessageToServer(message) {
+          $.ajax({
+            type: "POST",
+            url: "https://f796-218-164-117-204.ngrok-free.app", // 請替換成您的伺服器端點URL
+            data: { message: message },
+            success: function () {
+              addMessageToList(message);
+            },
+            error: function () {
+              console.log("發生錯誤，無法傳送訊息至伺服器");
+            },
+          });
+        }
+
+        function addMessageToList(message) {
+          var article = $("<div>").addClass("article");
+          var p = $("<p>").text(message);
+          article.append(p);
+          $("#list").append(article);
+          $("#content").val("");
+        }
+      });
+    </script>
+  </body>
+</html>
