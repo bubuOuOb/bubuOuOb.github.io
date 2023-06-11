@@ -1,11 +1,12 @@
 h1 {
+  color: white;
   font-size: 60px;
   text-align: center;
 }
 p {
   color: red;
   width: 500px;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 @keyframes change-color {
     from {background-color:red;}
